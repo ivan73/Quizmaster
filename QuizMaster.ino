@@ -566,10 +566,10 @@ void schreibeAuswertung(EthernetClient client)
 	tn += " Punkte:";
 	tn += teilnehmer[0].SummePunkte();
 	tn += "<br />";
-
 	tn += "</h2>";
-	
 	client.print(tn);
+
+	client.print("<br />Neustart mit Taste! (min. 2Sekunden druecken) ");
 }
 
 
