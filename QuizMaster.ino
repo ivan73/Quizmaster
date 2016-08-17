@@ -77,7 +77,7 @@ byte fehlendeTastenTeilnehmer = maxAnzahlTeilnehmer;
 							 // store error strings in flash to save RAM
 void setup() 
 {
-	Serial.begin(38400);
+	//Serial.begin(38400);
 	byte PinNr = 0;
 
 	for (byte t = 1; t <= maxAnzahlTeilnehmer; t++)
@@ -418,7 +418,7 @@ void loop() {
 							Serial.print("Tn:"); Serial.println(t);
 							Serial.print("Punkte:"); Serial.println(teilnehmer[t - 1].punkte);
 						}
-						if (taste > 10)
+						if (taste > 5)
 							status_html = Auswertung;
 						else
 							status_html = Quiz;
@@ -494,7 +494,7 @@ bool schreibeAnzahlTeilnehmer(EthernetClient client)
 	client.print("<h2>");
 	client.print("Anzahl Teilnehmer: ");  client.println(anzahl_Teilnehmer);
 	client.print("</h2>");
-	client.print("<br />");
+	client.print("<br />Weiter mit Taste! (min. 2Sekunden druecken) ");
 }
 
 void schreibeFrage(EthernetClient client)
@@ -536,6 +536,8 @@ void schreibeFrageMitAntwort(EthernetClient client)
 	String s = fk.naechsteFrage.get_html_antworten(antw);
 	Serial.println(s);
 	client.print(s);
+	client.print("<br />Weiter mit Taste! (min. 2Sekunden druecken) ");
+	client.print("<br />Abbruch Quiz, zur Auswertung - Taste min. 5Sekunden druecken ");
 }
 
 void schreibeAuswertung(EthernetClient client)
@@ -667,4 +669,7 @@ bool schreibeDateiListe(EthernetClient client, uint8_t flags)
 	String f = fileList[fileNrSelected];
 	fileName = "/qm/";
 	fileName += f;
+
+	client.print("<br />Weiterscrollen: Kurzer Tastendruck");
+	client.print("<br />Auswaehlen: Langer Tastendruck  (min 2 Sekunden)");
 }
