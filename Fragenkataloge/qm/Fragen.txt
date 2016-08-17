@@ -1,0 +1,16 @@
+IP:10.67.67.115
+1.Ohmsches Gesetz
+    1.Der Strom sinkt proportional mit der Spannung (bei gleichbleibenden Widerstand).
+    2.Der Strom verhält sich umgekeht proportional mit der Spannung (bei gleichbleibenden Widerstand).
+    3.Der Strom bleigt gleich, wenn Spannung poroportional steigt, und Widerstand proportional sinkt.
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+2.Temperatur und Widerstand
+    1.Beim NTC-Widerstand steigt der Widerstand wenn die Temperatur sinkt.
+    2.Beim PTC-Widerstand sinkt der Widerstand wenn die Temperatur steigt.
+    3.Beim Heißleiter muss die Temperatur sinken damit der Widerstand steigt.
+    Zeit 30 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+3.Stromdichte. Gegeben ist ein geschlossener Stromkreis mit Hin- und Rückleiter, Glühlampe, Schmelzsicherung.
+    1.Die Stromdichte ist im Leiter hoch, in der Glühlampe gering, in der Schmelzsicherung gering. 
+    2.Die Stromdichte ist ist ein geschlossener Stromkreis überall gleich.
+    3.Die Stromdichte ist im Leiter gering, in der Glühlampe hoch, in der Schmelzsicherung mittelmäßig hoch.
+    Zeit 20 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0

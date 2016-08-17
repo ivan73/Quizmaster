@@ -1,0 +1,125 @@
+﻿1.Was sind die Augen?
+    1.Die Knospen der Reben, aus denen sich im Frühjahr die Sommertriebe entwickeln
+    2.Der kritische Blick des Winzers
+    3.Die jungen Sommertriebe
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+2.Kretzer
+    1.Name für die Weinbereitung aus roten Trauben nach dem für weiße Trauben üblichen Verfahren
+    2.Rotweinsorte
+    3.Bewertungskriterium
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+3.Leger
+    1.Bezeichnung für die liegenden Fässer
+    2.Im Volksmund für einen Betrunkenen
+    3.Hefeartige Bestandteile, die sich bei der Nachgärung des Weines am Boden ansetzen
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+4.Passito
+    1.Name für einen späten Jahrgang
+    2.Verfahren zur Herstellung von Spätlesen
+    3.Eiswein
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+5.Spund
+    1.Guckloch im Gärfass
+    2.Der erste Tropfen eines neuen Weines
+    3.Verschlusszapfen des Fassloches
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+6.Versoaln
+    1.Alte Rebsorte
+    2.Das Entlauben der Triebe
+    3.Andere Bezeichnung für Vernatsch
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+7.Was kann über das Mostgewicht, also den Anteil gelöster Stoffe im Traubenmost, bestimmt werden?
+    1.Der Alkoholgehalt des Weines
+    2.Die Reife der Weintrauben
+    3.Der Zuckeranteil
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+8.Wie nennt man es, wenn der Ober vor dem Einschenken des Weines dem Gast eine Kostprobe überlässt?
+    1.Den Gast degustieren lassen
+    2.Den Gast dekantieren lassen
+    3.Den Gast desutieren lassen
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+9.Welcher der folgenden Weine hat beim Servieren die höchste Temperatur?
+    1.Ein Kretzer
+    2.Ein Merlot
+    3.Ein Riesling
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+10.Welche beiden Länder sind die Ursprungsländer des Weines?
+    1.Griechenland und Türkei
+    2.Georgien und Armenien
+    3.Italien und Frankreich
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+11.Ein Sommelier fasst das Weinglas immer am Stiel an. Muss das sein?
+    1.Ja, der Stiel ist dafür vorgesehen
+    2.Das spielt keine Rolle
+    3.Weißweingläser ja, bei Rotweingläsern ist es egal
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+12.Wie heißt die Weißwein-Rebsorte "Pinot Grigio" auch?
+    1.Grauburgunder
+    2.Riesling
+    3.Weißer Burgunder
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+13.Wie geht man beim Dekantieren vor?
+    1.Den Wein in eine andere Flasche umfüllen, schwenken und dann in ein Glas geben
+    2.Den Wein in ein bauchförmiges Gefäß mit einem langen Hals umfüllen, um dem Wein "Luft zum Atmen" zu geben
+    3.Den Wein in ein Glas füllen, schwenken und am Glas riechen
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+14.Eine Magnum-Flasche (1,5 Liter) gilt als ...
+    1.... ideal für feinen Wein, da die Alterung und Flaschen-Reifung langsamer erfolgt
+    2.... als ideal für Billigwein-Erzeugnisse, da sie das Aroma eines minderwertigen Weins verbessern kann
+    3.... problematisch für die Aufbewahrung von Wein, deshalb wird sie eher für Schaumwein und Champagner verwendet
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+15.Ein junger, fruchtiger Rotwein sollte idealerweise bei welcher Temperatur getrunken werden?
+    1.12-13 Grad
+    2.15–18 Grad
+    3.Zimmertemperatur
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+16.Wenn man vom "Bouquet" eines Weines spricht, dann meint man...
+    1.... den Geruch
+    2.... den Alkoholgehalt
+    3.... den Geschmack im Abgang
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+17.Bier auf Wein, das lass sein – warum ist das so?
+    1.Bier enthält Hopfen, dieser Stoff verstärkt die Wirkung des Alkohols
+    2.Die Regel ist sinnlos, allenfalls dient sie als Warnung vor zu viel Alkohol
+    3.Bier schmeckt nach Weingenuss deutlich bitterer, weil im Wein zu viel Säure steckt
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+18.Wenn auf einer Flasche die Traubensorte "Chardonnay" draufsteht, ist dann auch nur Chardonnay drin?
+    1.Ja, weil die Chardonnay-Traube sich nicht mit anderen Traubensorten verträgt
+    2.Ja, weil die internationalen Weingesetze das so vorschreiben – sortenreine Weine dürfen nur aus einer Rebsorte bestehen
+    3.Nein – je nach Herkunftsland und Weingesetz können bis zu 25 Prozent anderer Trauben dabei sein
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+19.Wie hoch ist der durchschnittliche Wasseranteil in fertigem Qualitätswein?
+    1.50 - 60 %
+    2.60 - 65 %
+    3.85 - 88 %
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+20.Es gibt unterschiedliche Alkoholarten. Welcher dieser Alkohole ist besonders gesundheitsschädlich?
+    1.Glycerin
+    2.Äthanol
+    3.Methanol
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+21.Ein Fachausdruck in der Weinbeschreibung lautet "Persistenz". Was ist damit gemeint?
+    1.Der Abgang
+    2.Die Harmonie
+    3.Das Süße-Säure-Spiel
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+22.Das Bukett eines guten Gewürztraminers erinnert gerne an eine Blume bzw. Blüte. Es ist...?
+    1.Der Flieder
+    2.Die Rose
+    3.Der Holunder
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+23.Welcher Teil einer Rotweintraube hat am wenigsten Tannin (Gerbstoff)?
+    1.Die Traubenschale
+    2.Die Stängel bzw. Kämme
+    3.Das Fruchtfleisch
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+24.Ideale Lagertemperatur für Weine
+    1.6-8°C
+    2.10-14°C
+    3.14-17°C
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+25.Welches gesundheitliches Risiko wird durch Weingenuss gesenkt?
+    1.Rheuma
+    2.Diabetes
+    3.Herzinfarkt
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0

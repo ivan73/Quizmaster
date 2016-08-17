@@ -1,0 +1,195 @@
+﻿1.Andere Bezeichnung für Botrytis 
+    1.Essigstich
+    2.Edelfäule 
+    3.Schimmelpilz
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+2.Was ist ein Depot?
+    1.Aufbewahrung von Flaschen im Lagerkeller
+    2.Am Flaschenboden abgelagerte Trübstoffe des Weines
+    3.Französische Bezeichnung für Bestand an Spezialweinen
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+3.Guyot
+    1.Rebsorte
+    2.Rebkrankheit
+    3.Niedriges Erziehungssystem mit Drahtrahmenunterstützung
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+4.Wie viel Prozent Alkohol muss ein Wein laut EU-Richtlinie enthalten?
+    1.5,5%
+    2.7%
+    3.8,5 %
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+5.Welches Getränk zählt nicht zu den Weinen?
+    1.Champagner
+    2.Wodka
+    3.Sherry
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+6.Wie viele Rebsorten gibt es?
+    1.5.000
+    2.10.000
+    3.16.000
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+7.Welches der hier genannten Prädikate ist keine Qualitätsstufe für den Wein?
+    1.Kabinett
+    2.Frühauslese
+    3.Trockenbeerenauslese
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+8.Was versteht man unter Rioja?
+    1.Eine Rebsorte
+    2.Ein Anbaugebiet
+    3.Der Traubenmost
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+9.Was bezeichnet der Begriff "Sponti"?
+    1.Der erste Rotwein von Hobby-Winzer Joschka Fischer
+    2.Ein mit Hilfe von Naturhefen gegärter Wein
+    3.Ein mit Hilfe von Reinzuchthefen gegärter Wein
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+10.Was bezeichnet man beim Wein als Attacke?
+    1.Der Moment, in dem der Wein die Zunge berührt
+    2.Der Moment, in dem der Wein geschluckt wird?
+    3.Der Moment, in dem der Wein zu Kopfe steigt?
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+11.Was bedeutet "maderisiert"?
+    1.Ein überalterter Wein, der oxidiert ist. 
+    2.Keltertechnik, die in Madeira entwickelt wurde 
+    3.Ein Wein, der zu früh getrunken wird und deshalb unreif schmeckt
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+12.Seit wann wird Wein in Glasflaschen gefüllt und mit einem Korken versehen?
+    1.Seit dem 12. Jahrhundert 
+    2.Seit dem 17. Jahrhundert
+    3.Seit dem 15. Jahrhundert
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+13.Als Faustregel gilt: Je komplexer die Tanninstruktur, desto ...
+    1.... mehr Alkoholgehalt hat das Endprodukt
+    2.... reifer das Lesegut und hochwertiger der Wein
+    3.... unberechenbarer das Lesegut und problematischer das Gären
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+14.Als Terroir bezeichnet man...
+    1.... den Sud, der sich am Boden eines Barriquefasses bildet
+    2.... den Einfluss von Klima, Bodentyp und Winzerkunst auf den Wein
+    3.... die Lage des Weinbergs im Verhältnis zur Sonneneinstrahlung
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+15.Was ist eine Agraffe?
+    1.Das gebogene Glasrohr, aus dem beim Gären die Gase entweichen. 
+    2.Die Drahtkonstruktion, mit der Sekt- und Champagnerkorken befestigt werden 
+    3.Ein Barrique-Fass, in dem nacheinander zwei Weine reifen
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+16.Stimmt es, dass Wein Eiweißallergikern gefährlich werden kann?
+    1.Nein, weil Wein durch den Alkohol alle Allergene abtötet
+    2.Ja, weil die Pflanzenstoffe der Trauben, sogenannte Polyphenole, pflanzliches Eiweiß enthalten
+    3.Ja, denn es können Spuren von Eiweiß aus Eiern, Milch, Gelatine oder Fisch im Wein sein
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+17.Italien hat viele bekannte Weinstädte. In welcher italienischen Stadt ist der Brunello beheimatet?
+    1.In Siena.
+    2.In Montepulciano.
+    3.In Montalcino.
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+18.Die am meisten angebaute rote Rebsorte ist des Piemont ist?
+    1.Nebbiolo.
+    2.Dolcetto.
+    3.Barbera.
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+19.Bei Weinen spricht man gelegentlich von einem 'Botrytiston'. Was ist damit gemeint?
+    1.Ein Edelfäulearoma.
+    2.Ein stechender, schwefeliger Geruch.
+    3.Ein Braunton bei Rotweinen.
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+20.Was versteht man unter der "Rebkrankheit" Peronospora?
+    1.Die Stiellähme.
+    2.Den "echten" Mehltau.
+    3.Den "falschen" Mehltau.
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+21.Die 4 Grundgeschmacksrichtungen "süß", "salzig", "sauer" und "bitter" sind seit langem bekannt. Die fünfte, wissenschaftlich anerkannte Geschmacksrichtung ist...?
+    1.Taurini
+    2.Umami
+    3.Sushimi
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+22.Aus welcher Sprache leitet sich das Wort "Sekt" ab?
+    1.aus dem Englischen
+    2.aus dem Französischen
+    3.aus dem Spanischen
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+23.Welche Weine sind Schaumweine?
+    1.Sekt und Champagner 
+    2.Cabernet und Prosecco
+    3.Merlot und Shiraz
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+24.Wie heißt das Werkzeug des Glasmachers, mit dem er ein Weinglas herstellt?
+    1.Glasmacherflöte
+    2.Glasblasrohr
+    3.Glasmacherpfeife
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+25.Was ist ein koscherer (hebräisch = rein) Wein?
+    1.Er wird nur in Israel angebaut
+    2.Es handelt sich um liebliche Weine
+    3.Er erfüllt die jüdischen Speisevorschriften
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+26.Welche Religion verspricht im Paradies „Ströme von Wein“?
+    1.Islam 
+    2.Christentum
+    3.Hinduismus
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+27.Woraus stellte man im alten Ägypten ebenfalls Wein her?
+    1.Aus Brot
+    2.Aus Reis
+    3.aus Holunder
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+28.Welche Substanz im Wein wirkt Herzkranzgefäßerkrankungen entgegen?
+    1.Polyethylen
+    2.Polyphenole
+    3.Polyphonie
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+29.Wer verwendete 1451 erstmals den Namen Grappa für einen Tresterbrand?
+    1.Ein Notar aus Piemont
+    2.Ein Jesuitenmönch
+    3.Ein italienischer Bauer
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+30.Wodurch wird die Geschmacksrichtung eines Schaumweines bestimmt?
+    1.durch das Rütteln von der Hand
+    2.durch den Reifevorgang
+    3.durch die Zusammensetzung der Dosage
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+31.Was bedeutet „moussieren“?
+    1.auf Zimmertemperatur bringen
+    2.haltbar machen
+    3.schäumen
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+32.Wie nennt man den Vorgang, Wein auf Trinktemperatur zu bringen?
+    1.Chambrieren
+    2.Separieren
+    3.Chaptalisieren
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+33.Welchen Korkenzieher meldete ein texanischer Weinliebhaber zum Patent an?
+    1.Leverpull
+    2.Screwpull
+    3.Luftdruck-Korkenzieher
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+34.Welches Nebenprodukt des Weines kommt in der griechischen und türkischen Küche zur Geltung?
+    1.Weintreber
+    2.Weinsäure
+    3.Reblaub
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+35.Im Lukasevangelium gibt Jesus einen Rat zur Weinlagerung. Dieser gehöre in
+    1.neue Schläuche
+    2.Tonkrüge
+    3.alte Fässer
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+36.Von welchem griechischen Dichter stammt: In vino veritas
+    1.Ovid
+    2.Homer
+    3.Alkaios
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+37.Histamin kann in vielen Lebensmitteln und leider auch im Wein enthalten sein. In welcher Weinart ist es am ehesten enthalten?
+    1.In Apfelweinen.
+    2.In Weißweinen.
+    3.In Rotweinen.
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+38.Wenn man einen Wein als empyreumatisch beschreibt, was meint man damit?
+    1.einen grobschlächtigen Wein, ohne Finesse
+    2.einen Wein, der brenzlig, an Rauch, Verbranntes oder Geröstetes bis hin zu Teer erinnert.
+    3.ein Wein, der zu viel Sauerstoff ausgesetzt war und dadurch oxidiert ist.
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+39.Wovon spricht man, wenn man von der Bordelaiser Brühe redet?
+    1.von gepanschtem Bordeaux-Wein
+    2.von einem Pflanzenschutzmittel
+    3.Zu Zeiten der Reblauskatastrophe (19. Jhd.) bezeichneten Markthändler den Wein aus der Gegend Bordeaux als Brühe
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0

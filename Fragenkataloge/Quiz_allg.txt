@@ -1,0 +1,30 @@
+1.Was sind die Augen?
+    1.Die Knospen der Reben, aus denen sich im Frühjahr die Sommertriebe entwickeln
+    2.Der kritische Blick des Winzers
+    3.Die jungen Sommertriebe
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+2.Kretzer
+    1.Name für die Weinbereitung aus roten Trauben nach dem für weiße Trauben üblichen Verfahren
+    2.Rotweinsorte
+    3.Bewertungskriterium
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+3.Leger
+    1.Bezeichnung für die liegenden Fässer
+    2.Im Volksmund für einen Betrunkenen
+    3.Hefeartige Bestandteile, die sich bei der Nachgärung des Weines am Boden ansetzen
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+4.Passito
+    1.Name für einen späten Jahrgang
+    2.Verfahren zur Herstellung von Spätlesen
+    3.Eiswein
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+5.Spund
+    1.Guckloch im Gärfass
+    2.Der erste Tropfen eines neuen Weines
+    3.Verschlusszapfen des Fassloches
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+6.Versoaln
+    1.Alte Rebsorte
+    2.Das Entlauben der Triebe
+    3.Andere Bezeichnung für Vernatsch
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0

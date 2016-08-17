@@ -1,0 +1,135 @@
+﻿1.Andere Bezeichnung für Saltner
+    1.Polizist
+    2.Weingartenhüter
+    3.Feldaufpasser
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+2.Bedeutung der Saltner-Pratze
+    1.Hinweisschild
+    2.Informationsschild
+    3.Verbotsschild
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+3.Wann beginnt der Saltner seinen Dienst?
+    1.Zur Erntezeit
+    2.Am 15. August
+    3.Mit 1. September
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+4.Die Texte der Carmina Burana wurden verfasst im
+    1.11. – 12. Jh.
+    2.16. Jh.
+    3.18. Jh.
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+5.Welcher Begriff passt nicht zur Torggl
+    1.Torgglbett
+    2.Torgglfleckn
+    3.Torgglgabel
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+6.Bezeichnung für Pressbaum in der Meraner Gegend
+    1.Pressbalken
+    2.Preil
+    3.Torgglbaum
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+7.Wie sich das Wetter auf St. Urban verhält, so ist es noch 20 Tage bestellt. Der Gedenktag des Hl. Urban, des Schutzpatrons der Winzer, ist der
+    1.25. Mai
+    2.30. April
+    3.12. September
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+8.Wo ist das Rülpsen erlaubt
+    1.Westlichen Welt
+    2.China
+    3.Japan
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+9.Das Schurzoberteil nennt man
+    1.Brustteil
+    2.Pafer
+    3.Halsteil
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+10.Andere Bezeichnung für Grappa
+    1.Schnaps
+    2.Destillat
+    3.Treber
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+11.Das Loch in der Mitte eines Fasses heißt
+    1.Spundloch
+    2.Zapfloch
+    3.Fasspippe
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+12.Spinellbohrer, Spinell und Kerze bilden die
+    1.Dreifaltigkeit
+    2.Dreiheiligkeit
+    3.Dreieinigkeit
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+13.Eine Pazeide enthält
+    1.3,6 Liter
+    2.6,3 Liter
+    3.6,9 Liter
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+14.Die Taufen eines Fasses sind in der Mitte breiter,
+    1.Um 1/6
+    2.Um 1/5
+    3.Um 1/7
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+15.Ein Lagl enthält in der Regel zwischen
+    1.18-30 Liter
+    2.78-90 Liter
+    3.38 – 60 Liter
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+16.Die stehenden Fässer, die Stander, befinden sich
+    1.in der Ansetz
+    2.im Lagerraum
+    3.in der Torggl
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+17.Andere Bezeichnung für Holztrichter
+    1.Klafter
+    2.Kiefter
+    3.Trachter
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+18.Die Hausgeister in Südtirol sind
+    1.Weinnörggelen
+    2.Purzinigele
+    3.Weinmainzelmännchen
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+19.Erzherzog Johann kultivierte in Südtirol unter anderem
+    1.den Gewürztraminer 
+    2.den Weißburgunder 
+    3.den Vernatsch
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+20.Das Balkengestell, auf dem die Stander stehen, nennt man
+    1.Fassträger
+    2.Ganter
+    3.Ganterscheiter
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+21.Andere Bezeichnung für Chianti-Flasche
+    1.Piemonteser Flasche
+    2.Fiasko
+    3.Fischio
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+22.Das Trinkfässchen für das Feld nennt man
+    1.Panzele
+    2.Lagl
+    3.Bittrich
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+23.Mit welchem Gerät werden die Trauben aus dem Weinacker getragen?
+    1.Yhrn
+    2.Wimmschüssel
+    3.Zumme
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+24.Weinstein ist ein Zeichen für
+    1.hohen Gehalt an Mineralien
+    2.niederen Gehalt an Mineralien
+    3.mangelnde Qualität
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+25.Die Rebenlauben heißen im Burggrafenamt
+    1.Pataun
+    2.Pergl
+    3.Punt
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+26.Unter Reber versteht man
+    1.ein Messgerät
+    2.ein sichelförmiges Rebmesser
+    3.eine Schere
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+27.Mitte des 19. Jh. hatten die Weinbauern Probleme mit
+    1.dem  Mehltau
+    2.der Botrytis
+    3.der Kirschessigfliege
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0

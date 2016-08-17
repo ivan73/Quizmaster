@@ -1,0 +1,125 @@
+1.Wie viel Prozent Luftfeuchtigkeit sollte ein Lagerkeller aufweisen?
+    1.Mindestens 70 %
+    2.Mindestens 50 %
+    3.Mindestens 40 %
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+2.Wie nennt man beim Weintrinken den Nachgeschmack?
+    1.Abgang
+    2.Abklang
+    3.Abgesang
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+3.Für den Duft eines Weines verwendet man verschiedene Begriffe. Welcher gehört nicht dazu?
+    1.Bukett
+    2.Bodega
+    3.Blume
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+4.Was gibt dem Rotwein seine Farbe?
+    1.Die Lagerzeit
+    2.Die Hanglage
+    3.Die Beerenschalen
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+5.Wie hei?t der griechische Gott des Weines?
+    1.Hypnos
+    2.Demeter
+    3.Dionysos
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+6.Wie nennt man den Most, wenn er im Prozess der G?rung ist?
+    1.Federwei?er
+    2.Federling
+    3.Federwein
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+7.Welches ist keine Wermut-Marke?
+    1.Cinzano
+    2.Martini
+    3.Bellini
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+8.Gegenteil von s???
+    1.Sauer
+    2.Trocken
+    3.Bitter
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+9.Welche S?ure ist nicht Bestandteil eines Weines?
+    1.Apfels?ure
+    2.Butters?ure
+    3.Milchs?ure
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+10.Wie entfernt man Rotweinflecken auf Textilien?
+    1.Mit Zucker
+    2.Mit Sandelholz
+    3.Mit Salz
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+11.Was ist ein kurzer Wein?
+    1.Ein Wein der fr?h geerntet wurde
+    2.Ein Wein der flach wirkt ohne nennenswerten Abgang
+    3.Ein Wein der nur kurz gelagert wurde
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+12.Womit misst man den Reifezustand der Trauben?
+    1.Refrigerator
+    2.Refraktometer
+    3.Refektorium
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+13.Welchen Wein verwendet die Kirche als Messwein?
+    1.Wei?wein
+    2.Rotwein
+    3.Ros?wein
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+14.Ein vollmundiger, kr?ftiger Wein ist
+    1.Ein Kabinettwein
+    2.Qualit?tswein
+    3.Schwerer Wein
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+15.Wie nennt man Wein, der aus verschiedenen Traubensorten kombiniert wird?
+    1.Verschnitt
+    2.Arrivage
+    3.Deckwein
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+16.Wie nennt man das Aussp?len eines Weinglases?
+    1.Avinieren
+    2.Avancieren
+    3.Agieren
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+17.Welche Bezeichnung steht nicht f?r eine Flaschengr??e?
+    1.Piccolo
+    2.Ester
+    3.Methusalem
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+18.Warum werden Schraubverschl?sse immer h?ufiger?
+    1.Die seltenen Korkeichen sind vom Aussterben bedroht und d?rfen nicht mehr gesch?lt werden.
+    2.Die EU hat die Verwendung von Naturkorken wegen der Schimmelpilzgefahr und m?glicher Allergien verboten.
+    3.Schraubverschl?sse sollen den gef?rchteten Korkfehler vermeiden.
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+19.Was meinen Weinbauern wenn sie vom Verrieseln sprechen?
+    1.Bodenabtrag ans den Steilh?ngen, besonders wenn der Boden sandig ist
+    2.den Einsatz von Pflanzenschutzmitteln
+    3.Das vorzeitige Abwerfen von Bl?ten oder jungen Beeren
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+20.Wieviel Wein passt in eine Doppelmagnum-Flasche?
+    1.3 Liter
+    2.1,5 Liter
+    3.1,75 Liter
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+21.Wonach schmeckt ein Sauvignon Blanc?
+    1.Paprika, Erbsenschoten, Pfeffer
+    2.Paprika, gr?ne Tomaten, schwarze Johannisbeere, Stachelbeere
+    3.Haselnuss, Honigmelone, Zitrone, Grapefruit, Banane
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
+22.Wann sollte man einen Rotwein in eine Karaffe dekantieren?
+    1.Wenn er besonders jung ist
+    2.Wenn er besonders alt ist
+    3.Eigentlich immer
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+23.Wie h?lt man ein Weinglas richtig?
+    1.Mit drei Fingern
+    2.Am Fu? mit abgespreiztem kleinen Finger
+    3.Mit der ganzen Hand um den Kelch
+    Zeit 25 ; AntwortNr 1; Punkte 2; Falsch -1; ohne Antwort 0
+24.Was ist eine "Gr?ne Lese"?
+    1.So nennt man im Allgemeinen die Ernte von Wei?weintrauben
+    2.So nennt man die Bereinigung der Weinlagen durch Aufsammeln von Trauben, die noch gr?n zu Boden gefallen sind
+    3.So nennt man das Abschneiden noch kleiner, gr?ner Trauben
+    Zeit 25 ; AntwortNr 3; Punkte 2; Falsch -1; ohne Antwort 0
+25.Welches ist kein typisches Weinaroma?
+    1.Banane
+    2.Huhn
+    3.Lederpolitur
+    Zeit 25 ; AntwortNr 2; Punkte 2; Falsch -1; ohne Antwort 0
