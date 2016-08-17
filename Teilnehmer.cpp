@@ -35,6 +35,7 @@ String TeilnehmerClass::ermittleListeTeilnehmer(bool get_Taste)
 			ListeTeilnehmer[t - 1] = ListeTasten[t - 1];
 			Serial.print("Teilnehmer: "); Serial.print(t);
 			Serial.print("Taste: "); Serial.println(ListeTeilnehmer[t - 1]);
+			ListeTasten[t - 1] = 0;
 		}
 
 		if (ListeTeilnehmer[t-1] == 0)
