@@ -3,7 +3,8 @@
 #include <SD.h>
 #include <Ethernet.h>
 #include "Frage.h"
-
+//#include "SdFat.h"
+//#include "SdFatUtil.h"
 
 
 
@@ -39,16 +40,19 @@ private:
 	IPAddress ip;
 	//FrageClass Fragen_Liste[maxAnzahlFragen] = { FrageClass() };
 	FrageClass naechsteFrage;
-	File fkFile;
+	//File fkFile;
+
 	
 	
 	void init();
-	bool Oeffne_Datei(String Name);
+	//bool Oeffne_Datei(String Name, SDFile &path);
 	void Schliesse_Datei();
-	int Lese_Frage();
+	int Lese_Frage(char *line);
 	bool Set_IPAddress(String str_ip);
 	int anzahl_fragen = 0;
-	
+	int indexOf(char *str, char *search, unsigned int fromIndex);
+	char *substring(char *str, unsigned int start, unsigned int end);
+	int LesePunkte(char *str, char *search);
 };
 
 

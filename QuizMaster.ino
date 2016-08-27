@@ -18,7 +18,7 @@
 //#define ButtonNext 1	// für html Button
 
 #define alle_x_ms 100	// wie oft sollen die Tasten gelesen werden IO-Eingänge
-
+#define zeichenJeZeile 160
 
 const int buttonPin1 = 22;
 
@@ -32,9 +32,10 @@ SdVolume volume;
 SdFile root;
 SdFile qm;
 //SdFile jquery;
+SdFile quizFile;
 
 String fileList[10];
-String fileName = "Fragen.txt";
+char fileName[12] = "Test.txt";
 byte fileNrSelected = 0;
 
 // set the server at port 80 for HTTP
@@ -55,14 +56,14 @@ unsigned long previousMillis = 0;        // will store last time
 unsigned long interval = 10000;           // interval at which (milliseconds)
 long restzeit = 0;
 
-byte status_html = 0;
-
 #define Dateiwahl 0
 #define Teilnehmersuche 1
 #define Quiz 2
 #define Antwort 3
 #define Auswertung 4
 #define Ende 10
+
+byte status_html = Dateiwahl;
 
 int frage_nr = -1;
 
@@ -72,12 +73,14 @@ bool alleTeilnehmerGedrueckt = false;
 bool ZeitUm = false;
 byte fehlendeTastenTeilnehmer = maxAnzahlTeilnehmer;
 
+char c_line[zeichenJeZeile+1];
+
 //int z = 0;
 
 							 // store error strings in flash to save RAM
 void setup() 
 {
-	//Serial.begin(38400);
+	Serial.begin(38400);
 	byte PinNr = 0;
 
 	for (byte t = 1; t <= maxAnzahlTeilnehmer; t++)
@@ -252,15 +255,38 @@ void loop() {
 						currentLineIsBlank = false;
 					}
 					byte taste = teilnehmer[0].leseFunktionstaste();
-
 					if (taste == 1)
 					{
 						fileNrSelected++;
 					}
 					else if (taste > 1)
 					{
-						if (fk.Oeffne_Datei(fileName))
+						//if (jquery.open(&root, "jquery.js", O_READ))
+						//{
+						//	Serial.println("Opened jquery.js");
+						//}
+						//else
+						//	Serial.println("File open error jquery.js");
+						
+						//if (quizFile.open(&qm, "test.txt", O_READ))
+						if (quizFile.isOpen())
+							quizFile.close();
+						if (quizFile.open(&qm, fileName, O_READ))
+						{
+
+							Serial.print("Opened: ");
+							Serial.println(fileName);
 							status_html++;
+							//result = true;
+						}
+						else
+						{
+							Serial.print("File open error: ");
+							Serial.println(fileName);
+						}
+
+						//if (fk.Oeffne_Datei(fileName, qm))
+						//	status_html++;
 						teilnehmer[0].loescheTeilnehmer();
 
 					}
@@ -366,7 +392,38 @@ void loop() {
 					else
 					{
 						Serial.print("Lese_Frage");
-						int tmp = fk.Lese_Frage();
+						int tmp = -1;
+						while (tmp == -1)
+						{
+							tmp = LeseZeile(c_line);
+							if (tmp > 0)
+								tmp = fk.Lese_Frage(c_line);
+						}
+						//line = fkFile.readStringUntil('\n');
+
+						//if (line.length() == 0)
+						//{
+						//	Serial.println("keine Zeichen in der Zeile gelesen");
+						//	digitalWrite(SDCARD_CS, LOW);	// SPI SD Karte einschalten
+						//	digitalWrite(W5200_CS, HIGH);
+						//	line = fkFile.readStringUntil('\n');
+						//	Serial.println(line);
+
+						//	return result;
+						//	break;
+						//}
+
+						//if (line.length() > 159)
+						//{
+						//	Serial.println("Zeile zu lange");
+						//	Serial.println(line);
+						//	line.remove(159);
+						//}
+
+						//				//fkFile.readBytes()
+
+
+						
 
 						digitalWrite(SDCARD_CS, HIGH);	// SPI SD Karte ausschalten (Ethernet ein)
 						digitalWrite(W5200_CS, LOW);
@@ -382,7 +439,9 @@ void loop() {
 						if (tmp == -1 || fk.anzahl_fragen >= maxAnzahlFragen)
 						{
 							status_html = Auswertung;
-							fk.Schliesse_Datei();
+							//fk.Schliesse_Datei();
+							if (quizFile.isOpen())
+								quizFile.close();
 						}
 					}
 				}
@@ -522,6 +581,37 @@ void schreibeFrage(EthernetClient client)
 	
 	String t = teilnehmer[0].ermittleListeTeilnehmerGedrueckt();
 	client.print("Teilnehmer hat geantwortet: ");  client.println(t);
+}
+
+int LeseZeile(char *c_line)
+{
+	memset(c_line, 0, 160);
+	char c = 0;
+	char cnt = 0;
+	do
+	{
+		c = quizFile.read();
+		Serial.print(c);
+		c_line[cnt] = c;
+		cnt++;
+		if (cnt >= zeichenJeZeile)
+		{
+			Serial.println("Zeile zu lange");
+			do
+			{
+				c = quizFile.read();
+				Serial.print(c);
+			} while (c != EOF && c != '\n');
+		}
+
+	} while (c != EOF && c != '\n');
+	Serial.print("Zeile:");
+	Serial.println(c_line);
+	if (cnt == 0)
+		return -1;
+	else
+		return cnt;
+
 }
 
 void schreibeFrageMitAntwort(EthernetClient client)
@@ -667,8 +757,9 @@ bool schreibeDateiListe(EthernetClient client, uint8_t flags)
 	Serial.print("fileNrSelected");
 	Serial.println(fileNrSelected);
 	String f = fileList[fileNrSelected];
-	fileName = "/qm/";
-	fileName += f;
+	f.toCharArray(fileName, 12);
+	//fileName = "/qm/";
+	//fileName += f;
 
 	client.print("<br />Weiterscrollen: Kurzer Tastendruck");
 	client.print("<br />Auswaehlen: Langer Tastendruck  (min 2 Sekunden)");

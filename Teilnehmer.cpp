@@ -115,9 +115,12 @@ byte TeilnehmerClass::leseFunktionstaste()
 	{
 		if (clickPressedMillis < 1000)
 			result = 1;
-		Serial.println(result);
+		clickPressedMillis = 0;
+		Serial.print("Taste fuer ");
+		Serial.print(result);
+		Serial.println(" sec gedrueckt: ");
 	}
-	clickPressedMillis = 0;
+	
 
 	
 	return result;

@@ -14,61 +14,66 @@ void FragenClass::init()
 //FragenClass Fragen;
 
 
-void FragenClass::Schliesse_Datei()
+//void FragenClass::Schliesse_Datei()
+//{
+//	digitalWrite(SDCARD_CS, LOW);	// SPI SD Karte einschalten
+//	digitalWrite(W5200_CS, HIGH);
+//
+//	if (fkFile)
+//	{
+//		fkFile.close();
+//	}
+//	else
+//	{
+//		String s = "Fehler beim Schließen der Datei: ";
+//		s += fkFile.name();
+//		Serial.println(s);
+//	}
+//	digitalWrite(SDCARD_CS, HIGH);	// SPI SD Karte ausschalten (Ethernet ein)
+//	digitalWrite(W5200_CS, LOW);
+//}
+
+//bool FragenClass::Oeffne_Datei(String Name, SDFile path)
+//{
+//	bool result = false;
+//
+//	quizPath = path;
+//	quizName = Name;
+//	
+//	Serial.print("öffnen und lesen der Datei: ");
+//	Serial.println(Name);
+//	digitalWrite(SDCARD_CS, LOW);	// SPI SD Karte einschalten
+//	digitalWrite(W5200_CS, HIGH);
+//
+//	if (!SD.begin(SDCARD_CS))	// Initializes the SD library and card
+//	{
+//		Serial.println("SD Initialisierung fehlgeschlagen!");
+//	}
+//	Serial.println("SD Initialisierung erfolgreich!");
+//
+//	//fkFile = SD.open(Name);
+//
+//	
+//	
+//	//if (fkFile)
+//	//{
+//	//	Serial.println(Name);
+//	//	result = true;
+//	//}
+//	//else
+//	//{
+//	//	// if the file didn't open, print an error:
+//	//	String s = "Fehler beim Öffnen der Datei: ";
+//	//	s += Name;
+//	//	Serial.println(s);
+//	//}
+//	digitalWrite(SDCARD_CS, HIGH);	// SPI SD Karte ausschalten (Ethernet ein)
+//	digitalWrite(W5200_CS, LOW);
+//	return result;
+//}
+
+int FragenClass::Lese_Frage(char *line)
 {
-	digitalWrite(SDCARD_CS, LOW);	// SPI SD Karte einschalten
-	digitalWrite(W5200_CS, HIGH);
-
-	if (fkFile)
-	{
-		fkFile.close();
-	}
-	else
-	{
-		String s = "Fehler beim Schließen der Datei: ";
-		s += fkFile.name();
-		Serial.println(s);
-	}
-	digitalWrite(SDCARD_CS, HIGH);	// SPI SD Karte ausschalten (Ethernet ein)
-	digitalWrite(W5200_CS, LOW);
-}
-
-bool FragenClass::Oeffne_Datei(String Name)
-{
-	bool result = false;
-	
-	Serial.print("öffnen und lesen der Datei: ");
-	Serial.println(Name);
-	digitalWrite(SDCARD_CS, LOW);	// SPI SD Karte einschalten
-	digitalWrite(W5200_CS, HIGH);
-
-	if (!SD.begin(SDCARD_CS))	// Initializes the SD library and card
-	{
-		Serial.println("SD Initialisierung fehlgeschlagen!");
-	}
-	Serial.println("SD Initialisierung erfolgreich!");
-
-	fkFile = SD.open(Name);
-	if (fkFile)
-	{
-		Serial.println(Name);
-		result = true;
-	}
-	else
-	{
-		// if the file didn't open, print an error:
-		String s = "Fehler beim Öffnen der Datei: ";
-		s += Name;
-		Serial.println(s);
-	}
-	digitalWrite(SDCARD_CS, HIGH);	// SPI SD Karte ausschalten (Ethernet ein)
-	digitalWrite(W5200_CS, LOW);
-	return result;
-}
-
-int FragenClass::Lese_Frage()
-{
-	int anzahl_zeilen = 0;
 	bool ersteZeile = true;
 	FrageClass *fr;
 
@@ -79,201 +84,107 @@ int FragenClass::Lese_Frage()
 
 	int result = -1;
 
-	digitalWrite(SDCARD_CS, LOW);	// SPI SD Karte einschalten
-	digitalWrite(W5200_CS, HIGH);
-
-	char c_line[160];
 	
+	Serial.println(line);
+		
+	/*
+	1.Frage eins ci=1 si=10 ci<si | ci!=-1 & si==-1
+	1.Antwort ci=5, si=3 si<ci
+	2.Antwort ci=5, si=3 si<ci
+	3.Antwort ci=5, si=3 si<ci
+	Zeit = 25; FrageNr 3; Punkte 2; Falsch -1; ohne Antwort 0  c=-1, s=3
+	*/
 
-	memset(c_line, 32, 159);
-	c_line[159] = '\0';
+	//ci = line.indexOf('.');
+	//si = line.indexOf(' ');
 
-	String line = String(c_line);
+	ci = indexOf(line, ".", 0);
+	si = indexOf(line, " ", 0);
 
-	while (result == -1)
+	// wenn Zeile mit Space beginnt, dann ermittle wieviele Space
+	if (si == 0)	// Zeile beginnt mit Space?
 	{
-		line = fkFile.readStringUntil('\n');
-
-		if (line.length() == 0)
+		int next_si = 0;
+		while (si == next_si) // noch ein Space in Folge gefunden
 		{
-			Serial.println("keine Zeichen in der Zeile gelesen");
-			digitalWrite(SDCARD_CS, LOW);	// SPI SD Karte einschalten
-			digitalWrite(W5200_CS, HIGH);
-			line = fkFile.readStringUntil('\n');
-			Serial.println(line);
-
-			return result;
-			break;
+			//next_si = line.indexOf(' ', si + 1);	//
+			next_si = indexOf(line , " ", si + 1);	//
+			if (si + 1 == next_si)
+				si = next_si;
 		}
-
-		if (line.length() > 159)
-		{
-			Serial.println("Zeile zu lange");
-			Serial.println(line);
-			line.remove(159);
-		}
-
-						//fkFile.readBytes()
-		//char line[160] = fkFile.readStringUntil('\n');
-		Serial.println(line);
-		if (ersteZeile == true && line.indexOf("IP") != -1)	// in erster Zeile steht die IP-Adresse
-		{
-			int index = line.indexOf(":");
-			if (index != -1)
-			{
-				String ip_str = line.substring(index + 1);
-				Set_IPAddress(ip_str);	// ermittle IP-Adresse aus dem String
-
-				Serial.println("IP-Adresse aus Datei:");
-				Serial.println(ip);
-			}
-		}
-		else
-			ersteZeile = false;
-		/*
-		1.Frage eins ci=1 si=10 ci<si | ci!=-1 & si==-1
-		1.Antwort ci=5, si=3 si<ci
-		2.Antwort ci=5, si=3 si<ci
-		3.Antwort ci=5, si=3 si<ci
-		Zeit = 25; FrageNr 3; Punkte 2; Falsch -1; ohne Antwort 0  c=-1, s=3
-		*/
-
-		ci = line.indexOf('.');
-		si = line.indexOf(' ');
-		// wenn Zeile mit Space beginnt, dann ermittle wieviele Space
-		if (si == 0)	// Zeile beginnt mit Space?
-		{
-			int next_si = 0;
-			while (si == next_si) // noch ein Space in Folge gefunden
-			{
-				next_si = line.indexOf(' ', si + 1);	//
-				if (si + 1 == next_si)
-					si = next_si;
-			}
-		}
-
-		//Serial.print("ci:"); Serial.println(ci);
-		//Serial.print("si:"); Serial.println(si);
-		//Serial.println(anzahl_zeilen);
-
-		// 1.Frage ci=1 si=10 ci<si
-		if (ci != -1 && (ci < si || si == -1))
-		{
-			//Serial.print("Frage"); Serial.println(si);
-
-			//Fragen_Liste[anzahl_fragen] = FrageClass();
-			//fr = &Fragen_Liste[anzahl_fragen];	// neue Frage anlegen
-			//fr = &naechsteFrage;	// neue Frage anlegen
-
-			//Serial.print("anzahl_fragen"); Serial.println(anzahl_fragen);
-
-			String str_tmp = line.substring(0, ci); // Numerierung der Frage steht vor dem Komma
-			naechsteFrage.frage_nr = str_tmp.toInt();	// Wandle in Integer
-			
-														//naechsteFrage.frage = (line.substring(ci + 1));	// Text der Frage steht nach dem Komma
-			String str_fr = line.substring(ci + 1);
-			str_fr.toCharArray(naechsteFrage.frage, 150);	// Text der Antwort steht nach dem Komma
-			
-			Serial.print("Frage"); Serial.print(naechsteFrage.frage_nr); Serial.println(naechsteFrage.frage);
-			//Serial.println(str_fr);
-			//Serial.println(naechsteFrage.frage_nr);
-			//Serial.println(str_fr.length());
-			anzahl_fragen++;
-		}
-
-		// 1.Antwort ci=5, si=3 si<ci
-		else if (ci != -1 && si < ci)
-		{
-			int antwort_nr = 0;
-			String str_tmp = line.substring(0, ci); // Numerierung der Antwort steht vor dem Komma
-			antwort_nr = str_tmp.toInt();	// Wandle in 
-			if (antwort_nr > 3 || antwort_nr == 0)
-			{
-				Serial.println("Ungültige Nummerierung der Antwort");
-				Serial.println(line);
-			}
-			else
-			{
-				//Serial.print("ci:"); Serial.print(ci);
-				//Serial.print("si:"); Serial.print(si);
-				String str_aw = line.substring(ci + 1);
-				//naechsteFrage.antworten[antwort_nr - 1] = line.substring(ci + 1);	// Text der Antwort steht nach dem Komma
-				str_aw.toCharArray(naechsteFrage.antworten[antwort_nr - 1], 150);	// Text der Antwort steht nach dem Komma
-				//Serial.println(line); 
-				//Serial.println(line.length());
-				Serial.print("Antwort"); Serial.print(antwort_nr); Serial.println(naechsteFrage.antworten[antwort_nr - 1]);
-				//Serial.println(str_fr);
-				//Serial.println(antwort_nr);
-				//Serial.println(str_fr.length());
-
-			}
-		}
-		// Parameter c=-1, s=3
-		else if (ci == -1 && si > -1) // Zeit = 25 ; FrageNr 3; Punkte 2; Falsch -1; ohne Antwort 0  
-		{
-
-			String str = String("Zeit");
-			int index = line.indexOf(str, si) + str.length();
-			int sp = line.indexOf(';', index);
-			str_tmp = line.substring(index, sp); // Numerierung steht vor dem Strichpunkt
-			int value = str_tmp.toInt();	// Wandle in Zahl um
-			Serial.print(str); Serial.println(value);
-			naechsteFrage.zeit = value;
-
-			str = String("Nr"); //AntwortNr
-								//Serial.println(str);
-			index = line.indexOf(str, si) + str.length();
-			sp = line.indexOf(';', index);
-
-			//Serial.print("index:"); Serial.print(index);
-			//Serial.print("sp:"); Serial.println(sp);
-
-			//Serial.print("line:"); Serial.println(line);
-			str_tmp = line.substring(index, sp); // Numerierung steht vor dem Strichpunkt
-
-
-												 //Serial.print("str_tmp:"); Serial.println(str_tmp);
-
-			value = str_tmp.toInt();	// Wandle in Zahl um
-
-			Serial.print(str); Serial.print(value);
-			naechsteFrage.richtige_antwort = value;
-
-			str = String("Punkte");
-			index = line.indexOf(str, si) + str.length();
-			sp = line.indexOf(';', index);
-			str_tmp = line.substring(index, sp); // Numerierung steht vor dem Strichpunkt
-			value = str_tmp.toInt();	// Wandle in Zahl um
-			Serial.print(str); Serial.print(value);
-			naechsteFrage.punkte_richtig = value;
-
-			str = String("Falsch");
-			index = line.indexOf(str, si) + str.length();
-			sp = line.indexOf(';', index);
-			str_tmp = line.substring(index, sp); // Numerierung steht vor dem Strichpunkt
-			value = str_tmp.toInt();	// Wandle in Zahl um
-			Serial.print(str); Serial.print(value);
-			naechsteFrage.punkte_falsch = value;
-
-			str = String("ohne Antwort");
-			index = line.indexOf(str, si) + str.length();
-			sp = line.indexOf(';', index);
-			str_tmp = line.substring(index, sp); // Numerierung steht vor dem Strichpunkt
-			value = str_tmp.toInt();	// Wandle in Zahl um
-			Serial.print(str); Serial.println(value);
-			naechsteFrage.punkte_ohne_antwort = value;
-
-			result = naechsteFrage.frage_nr;
-
-		}
-
-		//Serial.println(line);
-		anzahl_zeilen++;
 	}
 
+	Serial.print("ci:"); Serial.println(ci);
+	Serial.print("si:"); Serial.println(si);
+	//Serial.println(anzahl_zeilen);
+
+	// 1.Frage ci=1 si=10 ci<si
+	if (ci != -1 && (ci < si || si == -1))
+	{
+
+		//String str_tmp = line.substring(0, ci); // Numerierung der Frage steht vor dem Komma
+		char *str_tmp = substring(line, 0, ci); // Numerierung der Frage steht vor dem Komma
+
+		//naechsteFrage.frage_nr = str_tmp.toInt();	// Wandle in Integer
+		naechsteFrage.frage_nr = atoi(str_tmp); // Wandle in Integer
+			
+													//naechsteFrage.frage = (line.substring(ci + 1));	// Text der Frage steht nach dem Komma
+		//String str_fr = line.substring(ci + 1);
+		//str_fr.toCharArray(naechsteFrage.frage, 150);	// Text der Antwort steht nach dem Komma
+
+		char * str_fr = substring(line,ci + 1, 0);
+		strcpy(naechsteFrage.frage, str_fr);	// Text der Antwort steht nach dem Komma
+			
+		Serial.print("Frage"); Serial.print(naechsteFrage.frage_nr); Serial.println(naechsteFrage.frage);
+		anzahl_fragen++;
+	}
+
+	// 1.Antwort ci=5, si=3 si<ci
+	else if (ci != -1 && si < ci)
+	{
+		int antwort_nr = 0;
+		//String str_tmp = line.substring(0, ci); // Numerierung der Antwort steht vor dem Komma
+		//antwort_nr = str_tmp.toInt();	// Wandle in 
+		char *str_tmp = substring(line, 0, ci);	// Numerierung der Antwort steht vor dem Komma
+		antwort_nr = atoi(str_tmp);	// Wandle in Integer
+		if (antwort_nr > 3 || antwort_nr == 0)
+		{
+			Serial.println("Ungültige Nummerierung der Antwort");
+			Serial.println(line);
+		}
+		else
+		{
+			//Serial.print("ci:"); Serial.print(ci);
+			//Serial.print("si:"); Serial.print(si);
+
+			//String str_aw = line.substring(ci + 1);
+			char *str_aw = substring(line, ci+1, 0);
+			//str_aw.toCharArray(naechsteFrage.antworten[antwort_nr - 1], 150);	// Text der Antwort steht nach dem Komma
+			strcpy(naechsteFrage.antworten[antwort_nr - 1], str_aw);	// Text der Antwort steht nach dem Komma
+
+			//Serial.println(line); 
+			//Serial.println(line.length());
+			Serial.print("Antwort"); Serial.print(antwort_nr); Serial.println(naechsteFrage.antworten[antwort_nr - 1]);
+			//Serial.println(str_fr);
+			//Serial.println(antwort_nr);
+			//Serial.println(str_fr.length());
+
+		}
+	}
+	// Parameter c=-1, s=3
+	else if (ci == -1 && si > -1) // Zeit = 25 ; FrageNr 3; Punkte 2; Falsch -1; ohne Antwort 0  
+	{
+		naechsteFrage.zeit = LesePunkte(line + si, "Zeit"); 
+		naechsteFrage.richtige_antwort = LesePunkte(line + si, "Nr");
+		naechsteFrage.punkte_richtig = LesePunkte(line + si, "Punkte");
+		naechsteFrage.punkte_falsch = LesePunkte(line + si, "Falsch");
+		naechsteFrage.punkte_ohne_antwort = LesePunkte(line + si, "ohne Antwort");
+
+		result = naechsteFrage.frage_nr;
+	}
+
+
 	return result;
-	digitalWrite(SDCARD_CS, HIGH);	// SPI SD Karte ausschalten (Ethernet ein)
-	digitalWrite(W5200_CS, LOW);
 }
 
 bool FragenClass::Set_IPAddress(String str_ip)
@@ -316,6 +227,51 @@ bool FragenClass::Set_IPAddress(String str_ip)
 
 	return result;
 
+}
+int FragenClass::LesePunkte(char *str, char *search)
+{
+	int res = 0;
+	int index = indexOf(str, search, 0) + strlen(search);
+	int sp = indexOf(str, ";", index);
+	//str_tmp = line.substring(index, sp); // Numerierung steht vor dem Strichpunkt
+	char *str_tmp = substring(str, index, sp); // Numerierung der Frage steht vor dem Komma
+
+												//int value = str_tmp.toInt();	// Wandle in Zahl um
+	int value = atoi(str_tmp);	// Wandle in Integer
+
+	//Serial.print(search); Serial.println(value);
+	return value;
+
+}
+
+int FragenClass::indexOf(char *str, char *search, unsigned int fromIndex)
+{
+	int len = strlen(str);
+	if (fromIndex >= len) return -1;
+	const char *found = strstr(str + fromIndex, search);
+	if (found == NULL) return -1;
+	return found - str;
+
+}
+
+char *FragenClass::substring(char *str, unsigned int start, unsigned int end)
+{
+	
+	char tmp[160];
+	memset(tmp, 0, 160);
+	unsigned int cnt = 0;
+	int len = strlen(str);
+	if (end == 0 || end > len)
+		end = len;
+	for (unsigned int i = start; i < end; i++)
+	{
+		tmp[cnt] = str[i];
+		cnt++;
+	}
+	Serial.print("substring"); Serial.print(str); Serial.print(start); Serial.print(end); Serial.println(tmp);
+	return tmp;
+	 
+	
 }
 
 FragenClass Fragen;
