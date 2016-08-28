@@ -18,7 +18,7 @@
 	#include "WProgram.h"
 #endif
 
-#define maxAnzahlFragen 30
+#define maxAnzahlFragen 25
 
 // Ethernet controller SPI CS pin
 #define W5200_CS  10

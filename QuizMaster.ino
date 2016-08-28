@@ -18,7 +18,7 @@
 //#define ButtonNext 1	// für html Button
 
 #define alle_x_ms 100	// wie oft sollen die Tasten gelesen werden IO-Eingänge
-#define zeichenJeZeile 160
+
 
 const int buttonPin1 = 22;
 
@@ -34,8 +34,8 @@ SdFile qm;
 //SdFile jquery;
 SdFile quizFile;
 
-String fileList[10];
-char fileName[12] = "Test.txt";
+char fileList[10][13];
+char fileName[13] = "Test.txt";
 byte fileNrSelected = 0;
 
 // set the server at port 80 for HTTP
@@ -73,7 +73,9 @@ bool alleTeilnehmerGedrueckt = false;
 bool ZeitUm = false;
 byte fehlendeTastenTeilnehmer = maxAnzahlTeilnehmer;
 
-char c_line[zeichenJeZeile+1];
+//char c_line[maxZeichenJeZeile+1];
+
+static char html_str[4 * maxZeichenJeZeile];
 
 //int z = 0;
 
@@ -219,7 +221,7 @@ void loop() {
 	boolean currentLineIsBlank = true;
 	
 	if (status_html == Teilnehmersuche)
-		teilnehmer[0].ermittleListeTeilnehmer(1);
+		teilnehmer[0].ermittleListeTeilnehmer(html_str);
 
 	if (client) {
 		Serial.println("new client");
@@ -395,51 +397,25 @@ void loop() {
 						int tmp = -1;
 						while (tmp == -1)
 						{
-							tmp = LeseZeile(c_line);
+							tmp = LeseZeile(html_str);
 							if (tmp > 0)
-								tmp = fk.Lese_Frage(c_line);
+								tmp = fk.Lese_Frage(html_str);
 						}
-						//line = fkFile.readStringUntil('\n');
 
-						//if (line.length() == 0)
-						//{
-						//	Serial.println("keine Zeichen in der Zeile gelesen");
-						//	digitalWrite(SDCARD_CS, LOW);	// SPI SD Karte einschalten
-						//	digitalWrite(W5200_CS, HIGH);
-						//	line = fkFile.readStringUntil('\n');
-						//	Serial.println(line);
-
-						//	return result;
-						//	break;
-						//}
-
-						//if (line.length() > 159)
-						//{
-						//	Serial.println("Zeile zu lange");
-						//	Serial.println(line);
-						//	line.remove(159);
-						//}
-
-						//				//fkFile.readBytes()
-
-
-						
-
-						digitalWrite(SDCARD_CS, HIGH);	// SPI SD Karte ausschalten (Ethernet ein)
-						digitalWrite(W5200_CS, LOW);
+						//digitalWrite(SDCARD_CS, HIGH);	// SPI SD Karte ausschalten (Ethernet ein)
+						//digitalWrite(W5200_CS, LOW);
 
 						Serial.println(tmp);
 						if (tmp != -1)
 						{
 							frage_nr = tmp;
 							Serial.println("");
-							Serial.print("Lese_Frage erfolgreich");
+							Serial.print("Lese_Frage erfolgreich:");
 							Serial.print(frage_nr);
 						}
 						if (tmp == -1 || fk.anzahl_fragen >= maxAnzahlFragen)
 						{
 							status_html = Auswertung;
-							//fk.Schliesse_Datei();
 							if (quizFile.isOpen())
 								quizFile.close();
 						}
@@ -544,10 +520,19 @@ bool schreibeAnzahlTeilnehmer(EthernetClient client)
 	schreibeHeader(client);
 	client.print("<h3>Ermittle Anzahl der Teilnehmer:</h3>");
 	client.print("<h1>Bitte alle die Taste Nr: 1 druecken</h1>");
-	String tn = "<h2>";
-	tn += teilnehmer[0].ermittleListeTeilnehmer(1);
-	tn += "</h2>";
-	client.print(tn);
+
+	html_str[0] = 0;
+	strcat(html_str, "<h2>");	// String tn = "<h2>";
+	//teilnehmer[0].ermittleListeTeilnehmer(html_str);
+	strcat(html_str, "</h2>");	//tn += "</h2>";
+	client.print(html_str);
+
+	html_str[0] = 0;
+	strcat(html_str, "<h2>");	// String tn = "<h2>";
+	//teilnehmer[0].ermittleTasteTeilnehmer(html_str);
+	strcat(html_str, "</h2>");	//tn += "</h2>";
+	client.print(html_str);
+
 	client.print("<br />");
 	anzahl_Teilnehmer = teilnehmer[0].ermittleAnzahlTeilnehmer();
 	client.print("<h2>");
@@ -562,13 +547,17 @@ void schreibeFrage(EthernetClient client)
 	schreibeHeader(client);
 	client.print("QuizDatei: ");  client.println(fileName);
 	client.print("<br />");
-	//Serial.print("anzahl_fragen");  Serial.println(fk.anzahl_fragen);
-
-	client.print(fk.naechsteFrage.get_html_frage());
-	//int antw = fk.naechsteFrage.richtige_antwort;
-	String s = fk.naechsteFrage.get_html_antworten(0);
-	//Serial.println(s);
-	client.print(s);
+	
+	//memset(html_str, 0, 4 * maxZeichenJeZeile);
+	html_str[0] = 0;
+	strcat(html_str, "123");
+	//fk.naechsteFrage.get_html_frage(html_str);
+	Serial.print(html_str);
+	client.print(html_str);
+	
+	fk.naechsteFrage.get_html_antworten(0, html_str);
+	
+	client.print(html_str);
 
 	client.print("<br />");
 	client.print("<br />");
@@ -583,18 +572,18 @@ void schreibeFrage(EthernetClient client)
 	client.print("Teilnehmer hat geantwortet: ");  client.println(t);
 }
 
-int LeseZeile(char *c_line)
+int LeseZeile(char *line)
 {
-	memset(c_line, 0, 160);
+	memset(line, 0, maxZeichenJeZeile);
 	char c = 0;
 	char cnt = 0;
 	do
 	{
 		c = quizFile.read();
 		Serial.print(c);
-		c_line[cnt] = c;
+		line[cnt] = c;
 		cnt++;
-		if (cnt >= zeichenJeZeile)
+		if (cnt >= maxZeichenJeZeile)
 		{
 			Serial.println("Zeile zu lange");
 			do
@@ -606,7 +595,7 @@ int LeseZeile(char *c_line)
 
 	} while (c != EOF && c != '\n');
 	Serial.print("Zeile:");
-	Serial.println(c_line);
+	Serial.println(line);
 	if (cnt == 0)
 		return -1;
 	else
@@ -620,12 +609,18 @@ void schreibeFrageMitAntwort(EthernetClient client)
 	client.print("QuizDatei: ");  client.println(fileName);
 	client.print("<br />");
 	//Serial.print("anzahl_fragen");  Serial.println(fk.anzahl_fragen);
-
-	client.print(fk.naechsteFrage.get_html_frage());
 	int antw = fk.naechsteFrage.richtige_antwort;
-	String s = fk.naechsteFrage.get_html_antworten(antw);
-	Serial.println(s);
-	client.print(s);
+
+	memset(html_str, 0, 4 * maxZeichenJeZeile);
+	fk.naechsteFrage.get_html_frage(html_str);	// client.print(fk.naechsteFrage.get_html_frage());
+	client.print(html_str);
+
+	fk.naechsteFrage.get_html_antworten(antw, html_str);	// fk.naechsteFrage.get_html_antworten(antw);
+
+	client.print(html_str);
+	Serial.println(html_str);
+
+	
 	client.print("<br />Weiter mit Taste! (min. 2Sekunden druecken) ");
 	client.print("<br />Abbruch Quiz, zur Auswertung - Taste min. 5Sekunden druecken ");
 }
@@ -723,8 +718,9 @@ bool schreibeDateiListe(EthernetClient client, uint8_t flags)
 			y++;
 		}
 		FileName[y] = '\0';
-		Serial.println(FileName);
-		fileList[file_nr] = FileName;
+		//Serial.println(FileName);
+		strcpy(fileList[file_nr], FileName); //fileList[file_nr] = FileName; 
+		Serial.println(fileList[file_nr]);
 		file_nr++;
 	}
 
@@ -745,19 +741,23 @@ bool schreibeDateiListe(EthernetClient client, uint8_t flags)
 
 	for (int i = 0; i < file_nr; i++)
 	{
-		String file = "<h2>";
+		html_str[0] = 0;
+		strcat(html_str, "<h2>");	// String file = "<h2>";
+		
 		if (i == fileNrSelected)
-			file += "<mark>";
-		file += fileList[i];
+			strcat(html_str, "<mark>");	//	file += "<mark>";
+		strcat(html_str, fileList[i]);	//file += fileList[i];
 		if (i == fileNrSelected)
-			file += "</mark>";
-		file += "</h2>";
-		client.println(file); 
+			strcat(html_str, "</mark>");	//	file += "</mark>";
+		strcat(html_str, "</h2>");	//file += "</h2>";
+		client.println(html_str);
 	}
 	Serial.print("fileNrSelected");
 	Serial.println(fileNrSelected);
-	String f = fileList[fileNrSelected];
-	f.toCharArray(fileName, 12);
+	//String f = fileList[fileNrSelected];
+	//f.toCharArray(fileName, 13);
+	//fileName = fileList[fileNrSelected];
+	strcpy(fileName, fileList[fileNrSelected]);
 	//fileName = "/qm/";
 	//fileName += f;
 

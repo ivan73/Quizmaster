@@ -12,13 +12,12 @@ void TeilnehmerClass::init()
 
 // prüft welcher Teilnehmer eine Taste gedrückt hat
 // -> schreibe Taste des Teilnehmers in ListeTeilnehmer
-// -> gibt einen String zurück welcher mit Teilnehmernummer 
+// -> schreibt in das char array welcher Teilnehmernummer 
 // welche bereits eine Taste gedrückt haben
-// Argument get_Taste: wenn true, dann wird auch die Tasten-Nummer zurückgegeben
-String TeilnehmerClass::ermittleListeTeilnehmer(bool get_Taste)
+void TeilnehmerClass::ermittleListeTeilnehmer(char *str)
 {
-	String teiln = "Teilnehmer: ";
-	String keys = "<br />Taste &nbsp &nbsp &nbsp &nbsp &nbsp : ";
+	strcat(str, "Teilnehmer: ");	//char teiln[50] = "Teilnehmer: ";
+	
 	bool state = false;
 	byte PinNr = 0;
 	
@@ -40,25 +39,64 @@ String TeilnehmerClass::ermittleListeTeilnehmer(bool get_Taste)
 
 		if (ListeTeilnehmer[t-1] == 0)
 		{
-			teiln += ".. ";
-			keys += ".. ";
+			strcat(str, ".. ");	// teiln += ".. ";
 		}
 		else
 		{
 			
 			if (t < 9)
-				teiln += "0";
-			teiln += t;
-			teiln += " ";
-			keys += "0";
-			keys += ListeTeilnehmer[t-1];
-			keys += " ";
+				strcat(str, "0"); //teiln += "0";
+			char num[2] = { " " };
+			sprintf(num, "%d ", t);
+			strcat(str, num);	// teiln += t;
+			strcat(str, " ");	//teiln += " ";
+
 		}
 	}
-	if (get_Taste)
-		teiln += keys;
-	return teiln;
 }
+
+// prüft welcher Teilnehmer eine Taste gedrückt hat
+// -> schreibe Taste des Teilnehmers in ListeTeilnehmer
+// -> schreibt in das char array welche Taste die Teilnehmernummer 
+// gedrückt haben
+void TeilnehmerClass::ermittleTasteTeilnehmer(char *str)
+{
+	strcat(str, "<br />Taste &nbsp &nbsp &nbsp &nbsp &nbsp : ");	//char teiln[50] = "Teilnehmer: ";
+
+	bool state = false;
+	byte PinNr = 0;
+
+
+	for (int t = 1; t <= maxAnzahlTeilnehmer; t++)
+	{
+		if (ListeTasten[t - 1] > 0)
+		{
+			if (ListeTeilnehmer[t - 1] == 0)
+			{
+				anzahl_Teilnehmer++;
+				Serial.print("Anzahl Teilnehmer: "); Serial.print(anzahl_Teilnehmer);
+			}
+			ListeTeilnehmer[t - 1] = ListeTasten[t - 1];
+			Serial.print("Teilnehmer: "); Serial.print(t);
+			Serial.print("Taste: "); Serial.println(ListeTeilnehmer[t - 1]);
+			ListeTasten[t - 1] = 0;
+		}
+
+		if (ListeTeilnehmer[t - 1] == 0)
+		{
+			strcat(str, ".. ");	// keys += ".. ";
+		}
+		else
+		{
+			strcat(str, "0");	// keys += "0";
+			char num[2] = { " " };
+			sprintf(num, "%d ", ListeTeilnehmer[t - 1]);
+			strcat(str, num);	// keys += ListeTeilnehmer[t-1];
+			strcat(str, " ");	// keys += " ";
+		}
+	}
+}
+
 
 int TeilnehmerClass::ermittleAnzahlTeilnehmer()
 {

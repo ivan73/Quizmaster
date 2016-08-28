@@ -71,7 +71,8 @@ class TeilnehmerClass
 	Punkte punkte_Liste[maxAnzahlFragen];
 	int punkte = 0;
 	
-	String ermittleListeTeilnehmer(bool Taste);
+	void ermittleListeTeilnehmer(char *str);
+	void ermittleTasteTeilnehmer(char *str);
 	bool leseTaster(void);
 	String ermittleTasten();
 	byte alleTeilnehmerGedrueckt(void);
