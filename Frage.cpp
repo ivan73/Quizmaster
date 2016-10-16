@@ -12,10 +12,10 @@ void FrageClass::init()
 
 void FrageClass::get_html_frage(char *str)
 {
-	//memset(str, 0, maxZeichenJeZeile);	// String res = "";
+	
 	str[0] = 0;
 	strcat(str, "<h1>Frage Nr.: ");	//res = "<h1>";
-	char num[2] = { " " };
+	char num[5] = { " " };
 	sprintf(num, "%d ", frage_nr);
 	strcat(str, num); //res += frage_nr; res += " ";
 	
@@ -41,12 +41,12 @@ void FrageClass::get_html_antworten(char richtige_antwort, char *str)
 		//{
 			if (richtige_antwort == (i + 1))
 				strcat(str, "<mark>"); //res += "<mark>";// markiere die richtige Antwort
-			char num[] = { " " };
+			char num[5] = { " " };
 			sprintf(num, "%d.", i + 1);
 			strcat(str, num); //res += i+1; res += ". ";
 			strcat(str, antworten[i]);	//res += antworten[i];
 			if (richtige_antwort == (i + 1))
-				strcat(str, "<mark>");  //res += "</mark>";// markiere die richtige Antwort
+				strcat(str, "</mark>");  //res += "</mark>";// markiere die richtige Antwort
 			strcat(str, "<br><br>");	// res += "<br>"; res += "<br>";
 		//}
 	}
@@ -56,5 +56,5 @@ void FrageClass::get_html_antworten(char richtige_antwort, char *str)
 }
 
 
-FrageClass Frage;
+//FrageClass Frage;
 

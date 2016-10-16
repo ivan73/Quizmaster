@@ -10,74 +10,12 @@ void FragenClass::init()
 	
 }
 
-
-//FragenClass Fragen;
-
-
-//void FragenClass::Schliesse_Datei()
-//{
-//	digitalWrite(SDCARD_CS, LOW);	// SPI SD Karte einschalten
-//	digitalWrite(W5200_CS, HIGH);
-//
-//	if (fkFile)
-//	{
-//		fkFile.close();
-//	}
-//	else
-//	{
-//		String s = "Fehler beim Schließen der Datei: ";
-//		s += fkFile.name();
-//		Serial.println(s);
-//	}
-//	digitalWrite(SDCARD_CS, HIGH);	// SPI SD Karte ausschalten (Ethernet ein)
-//	digitalWrite(W5200_CS, LOW);
-//}
-
-//bool FragenClass::Oeffne_Datei(String Name, SDFile path)
-//{
-//	bool result = false;
-//
-//	quizPath = path;
-//	quizName = Name;
-//	
-//	Serial.print("öffnen und lesen der Datei: ");
-//	Serial.println(Name);
-//	digitalWrite(SDCARD_CS, LOW);	// SPI SD Karte einschalten
-//	digitalWrite(W5200_CS, HIGH);
-//
-//	if (!SD.begin(SDCARD_CS))	// Initializes the SD library and card
-//	{
-//		Serial.println("SD Initialisierung fehlgeschlagen!");
-//	}
-//	Serial.println("SD Initialisierung erfolgreich!");
-//
-//	//fkFile = SD.open(Name);
-//
-//	
-//	
-//	//if (fkFile)
-//	//{
-//	//	Serial.println(Name);
-//	//	result = true;
-//	//}
-//	//else
-//	//{
-//	//	// if the file didn't open, print an error:
-//	//	String s = "Fehler beim Öffnen der Datei: ";
-//	//	s += Name;
-//	//	Serial.println(s);
-//	//}
-//	digitalWrite(SDCARD_CS, HIGH);	// SPI SD Karte ausschalten (Ethernet ein)
-//	digitalWrite(W5200_CS, LOW);
-//	return result;
-//}
-
 int FragenClass::Lese_Frage(char *line)
 {
 	bool ersteZeile = true;
 	FrageClass *fr;
 
-	String str_tmp = "";
+	//String str_tmp = "";
 
 	int ci = -1;
 	int si = -1;
@@ -181,53 +119,55 @@ int FragenClass::Lese_Frage(char *line)
 		naechsteFrage.punkte_ohne_antwort = LesePunkte(line + si, "ohne Antwort");
 
 		result = naechsteFrage.frage_nr;
+		Serial.print("naechsteFrage.zeit"); Serial.println(naechsteFrage.zeit);
 	}
 
 
 	return result;
 }
 
-bool FragenClass::Set_IPAddress(String str_ip)
-{
-	bool result = true;
+//bool FragenClass::Set_IPAddress(String str_ip)
+//{
+//	bool result = true;
+//
+//	int commaIndex = 0;
+//	uint8_t ip_byte[4];
+//	for (int i = 0; i < 4; i++)
+//	{
+//		int nextCommaIndex = str_ip.indexOf('.', commaIndex);
+//		int value = 0;
+//		String str_tmp = "";
+//		if (nextCommaIndex != -1)
+//		{
+//			str_tmp = str_ip.substring(commaIndex, nextCommaIndex);
+//			commaIndex = nextCommaIndex + 1;
+//		}
+//		else
+//		{
+//			if (i < 2)
+//			{
+//				Serial.println("Fehler in IP Adresse - Anzahl Dezimalpunkte");
+//				Serial.println(commaIndex);
+//				Serial.println(nextCommaIndex);
+//				result = false;
+//			}
+//			else
+//				str_tmp = str_ip.substring(commaIndex);
+//		}
+//		value = str_tmp.toInt();
+//		ip_byte[i] = (byte)value;
+//		//Serial.println(ip_byte[i]);
+//	}
+//	if (result != false)
+//	{
+//		ip = IPAddress(ip_byte);
+//		Serial.println(ip);
+//	}
+//
+//	return result;
+//
+//}
 
-	int commaIndex = 0;
-	uint8_t ip_byte[4];
-	for (int i = 0; i < 4; i++)
-	{
-		int nextCommaIndex = str_ip.indexOf('.', commaIndex);
-		int value = 0;
-		String str_tmp = "";
-		if (nextCommaIndex != -1)
-		{
-			str_tmp = str_ip.substring(commaIndex, nextCommaIndex);
-			commaIndex = nextCommaIndex + 1;
-		}
-		else
-		{
-			if (i < 2)
-			{
-				Serial.println("Fehler in IP Adresse - Anzahl Dezimalpunkte");
-				Serial.println(commaIndex);
-				Serial.println(nextCommaIndex);
-				result = false;
-			}
-			else
-				str_tmp = str_ip.substring(commaIndex);
-		}
-		value = str_tmp.toInt();
-		ip_byte[i] = (byte)value;
-		//Serial.println(ip_byte[i]);
-	}
-	if (result != false)
-	{
-		ip = IPAddress(ip_byte);
-		Serial.println(ip);
-	}
-
-	return result;
-
-}
 int FragenClass::LesePunkte(char *str, char *search)
 {
 	int res = 0;
@@ -274,4 +214,4 @@ char *FragenClass::substring(char *str, unsigned int start, unsigned int end)
 	
 }
 
-FragenClass Fragen;
+//FragenClass Fragen;

@@ -18,7 +18,7 @@
 	#include "WProgram.h"
 #endif
 
-#define maxAnzahlFragen 25
+#define maxAnzahlFragen 30
 
 // Ethernet controller SPI CS pin
 #define W5200_CS  10
@@ -29,26 +29,19 @@ class FragenClass
 {
  
 private:
-	//String * line_buffer;
-	//Frage fr[];
-	// Ethernet controller SPI CS pin
 
  protected:
 
 
  public:
 	IPAddress ip;
-	//FrageClass Fragen_Liste[maxAnzahlFragen] = { FrageClass() };
 	FrageClass naechsteFrage;
-	//File fkFile;
 
 	
 	
 	void init();
-	//bool Oeffne_Datei(String Name, SDFile &path);
-	void Schliesse_Datei();
+	//void Schliesse_Datei();
 	int Lese_Frage(char *line);
-	bool Set_IPAddress(String str_ip);
 	int anzahl_fragen = 0;
 	int indexOf(char *str, char *search, unsigned int fromIndex);
 	char *substring(char *str, unsigned int start, unsigned int end);
