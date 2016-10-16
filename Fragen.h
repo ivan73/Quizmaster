@@ -3,7 +3,8 @@
 #include <SD.h>
 #include <Ethernet.h>
 #include "Frage.h"
-
+//#include "SdFat.h"
+//#include "SdFatUtil.h"
 
 
 
@@ -28,27 +29,23 @@ class FragenClass
 {
  
 private:
-	//String * line_buffer;
-	//Frage fr[];
-	// Ethernet controller SPI CS pin
 
  protected:
 
 
  public:
 	IPAddress ip;
-	//FrageClass Fragen_Liste[maxAnzahlFragen] = { FrageClass() };
 	FrageClass naechsteFrage;
-	File fkFile;
+
 	
 	
 	void init();
-	bool Oeffne_Datei(String Name);
-	void Schliesse_Datei();
-	int Lese_Frage();
-	bool Set_IPAddress(String str_ip);
+	//void Schliesse_Datei();
+	int Lese_Frage(char *line);
 	int anzahl_fragen = 0;
-	
+	int indexOf(char *str, char *search, unsigned int fromIndex);
+	char *substring(char *str, unsigned int start, unsigned int end);
+	int LesePunkte(char *str, char *search);
 };
 
 

@@ -11,6 +11,7 @@
 
 #include "Fragen.h"
 
+
 #define maxAnzahlTeilnehmer 12
 
 #define Taster_UP 69
@@ -36,7 +37,6 @@ static byte ListeTeilnehmer[maxAnzahlTeilnehmer];
 static byte anzahl_Teilnehmer = 0;
 static byte ListeTasten[maxAnzahlTeilnehmer];
 static int summePunkte = 0;
-//static unsigned long startZeit = 0;
 static unsigned long clickmillis = 0;
 static bool clickstatus  = false;
 static byte clicks = 0;
@@ -71,19 +71,21 @@ class TeilnehmerClass
 	Punkte punkte_Liste[maxAnzahlFragen];
 	int punkte = 0;
 	
-	String ermittleListeTeilnehmer(bool Taste);
+	void ermittleListeTeilnehmer(char *str);
+	void ermittleTasteTeilnehmer(char *str);
 	bool leseTaster(void);
-	String ermittleTasten();
+	//String ermittleTasten();
 	byte alleTeilnehmerGedrueckt(void);
 	void loescheTasten(void);
+	void loescheFNTaste(void);
 	void loescheTeilnehmer(void);
 	void auswertungPunkte(FragenClass fk);
 	void loeschePunkte(void);
-	int ermittleAnzahlTeilnehmer();
+	byte ermittleAnzahlTeilnehmer();
 	void setzteStatus(byte TeilnehmerNr);
-	String ermittleListeTeilnehmerGedrueckt(void);
+	void ermittleListeTeilnehmerGedrueckt(char *str);
 	byte leseFunktionstaste(void);
-	byte leseFunktionsTaste(void);
+	//byte leseFunktionsTaste(void);
 	byte ermittleClicks(void);
 	int SummePunkte(void);
 };

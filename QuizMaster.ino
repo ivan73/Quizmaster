@@ -11,17 +11,14 @@
 #include <SPI.h>
 #include <Ethernet.h>
 #include "TimerOne.h"  
-#include "SdFat.h"
-#include "SdFatUtil.h"
+//#include "SdFat.h"
+//#include "SdFatUtil.h"
 
-#define Version "1.0"
-//#define ButtonNext 1	// für html Button
+#define Version "1.06"
 
 #define alle_x_ms 100	// wie oft sollen die Tasten gelesen werden IO-Eingänge
 
-
 const int buttonPin1 = 22;
-
 
 // define the controller's MAC address
 byte mac[] = {
@@ -32,14 +29,17 @@ SdVolume volume;
 SdFile root;
 SdFile qm;
 //SdFile jquery;
+SdFile quizFile;
 
-String fileList[10];
-String fileName = "Fragen.txt";
+char fileList[10][13];
+char fileName[13] = "Test.txt";
 byte fileNrSelected = 0;
+
+byte auswertungSelected = 1;
 
 // set the server at port 80 for HTTP
 int port = 80;
-String ipAddress = "";
+// char ipAddress[20];
 EthernetServer server(port);
 
 
@@ -49,13 +49,10 @@ EthernetServer server(port);
 #define SDCARD_CS 4
 FragenClass fk = FragenClass();
 TeilnehmerClass teilnehmer[maxAnzahlTeilnehmer] = { TeilnehmerClass() };
-//bool endeTeilnehmersuche = false;
 
 unsigned long previousMillis = 0;        // will store last time
 unsigned long interval = 10000;           // interval at which (milliseconds)
 long restzeit = 0;
-
-byte status_html = 0;
 
 #define Dateiwahl 0
 #define Teilnehmersuche 1
@@ -63,6 +60,8 @@ byte status_html = 0;
 #define Antwort 3
 #define Auswertung 4
 #define Ende 10
+
+byte status_html = Dateiwahl;
 
 int frage_nr = -1;
 
@@ -72,9 +71,8 @@ bool alleTeilnehmerGedrueckt = false;
 bool ZeitUm = false;
 byte fehlendeTastenTeilnehmer = maxAnzahlTeilnehmer;
 
-//int z = 0;
+char html_str[4 * maxZeichenJeZeile];
 
-							 // store error strings in flash to save RAM
 void setup() 
 {
 	Serial.begin(38400);
@@ -131,14 +129,8 @@ void setup()
 
 	// list file in root with date and size
 	Serial.println("Files found in qm:");
-	//root.ls(LS_DATE | LS_SIZE);
 	qm.ls(LS_DATE | LS_SIZE);
 	Serial.println();
-
-	// Recursive list of all directories
-	//Serial.println("Files found in all dirs:");
-	//root.ls(LS_R);
-	//qm.ls(LS_R);
 
 	Serial.println();
 	Serial.println("Done");
@@ -151,31 +143,14 @@ void setup()
 	//else
 	//	Serial.println("File open error jquery.js");
 
-	
-
-	
-	//fk = FragenClass();
-	//pinMode(SDCARD_CS, OUTPUT);
-	//digitalWrite(SDCARD_CS, LOW);	// SPI SD Karte einschalten
-	
-
 	int anzahl_zeilen = 0;
-	//while (anzahl_zeilen == 0)
-	//{
-	//pinMode(SDCARD_CS, OUTPUT);
-	//digitalWrite(SDCARD_CS, LOW);	// SPI SD Karte einschalten
-	//digitalWrite(W5200_CS, HIGH);
-	//anzahl_zeilen = fk.Lese_Datei(fileName);
-	//digitalWrite(SDCARD_CS, HIGH);	// SPI SD Karte ausschalten (Ethernet ein)
-	//digitalWrite(W5200_CS, LOW);
-	//}
 
-	//fk.Set_IPAddress("192.168.0.211");
 	IPAddress ip_set = IPAddress(192, 168, 0, 211);
 	IPAddress dns = IPAddress(192, 168, 0, 1);
 	IPAddress gw = IPAddress(192, 168, 0, 1);
 	IPAddress sn = IPAddress(255, 255, 255, 0);
 	Ethernet.begin(mac, ip_set);
+
 	//Ethernet.begin()
 	// Prüfen ob Verbindung erfolgreich??
 
@@ -183,30 +158,17 @@ void setup()
 	//Serial.println("DHCP configuration failed. Trying again...");
 	//}
 	// now that we have a good ethernet connection we can start the server
+
 	server.begin();
 	Serial.print("The server can be accessed at: ");
 	IPAddress ip = Ethernet.localIP();
-	ipAddress += ip[0];
-	ipAddress += ".";
-	ipAddress += ip[1];
-	ipAddress += ".";
-	ipAddress += ip[2];
-	ipAddress += ".";
-	ipAddress += ip[3];
-	//Serial.println(ipAddress);
+	
 	Serial.println(Ethernet.localIP());
 }
 
+// Timer1.attachInterrupt
 void lese_taster()
 {
-	//if (z > 1000)
-	//{
-	//	z = 0;
-	//	Serial.println("1000xTimerInterrupt");
-	//}
-	//else
-	//	z++;
-
 	teilnehmer[0].leseTaster();
 }
 
@@ -215,9 +177,6 @@ void loop() {
 	EthernetClient client = server.available();
 	boolean currentLineIsBlank = true;
 	
-	if (status_html == Teilnehmersuche)
-		teilnehmer[0].ermittleListeTeilnehmer(1);
-
 	if (client) {
 		Serial.println("new client");
 		
@@ -252,27 +211,43 @@ void loop() {
 						currentLineIsBlank = false;
 					}
 					byte taste = teilnehmer[0].leseFunktionstaste();
-
 					if (taste == 1)
 					{
 						fileNrSelected++;
 					}
 					else if (taste > 1)
 					{
-						if (fk.Oeffne_Datei(fileName))
+						
+						if (quizFile.isOpen())
+						{
+							Serial.println(""); 
+							Serial.print("Close File");
+							quizFile.close();
+						}
+						if (quizFile.open(&qm, fileName, O_READ))
+						{
+							Serial.println("");
+							Serial.print("Opened: ");
+							Serial.println(fileName);
+							quizFile.rewind();
+							alleTeilnehmerGedrueckt = false;
+							ZeitUm = false;
+
+							teilnehmer[0].loescheTasten();
+							teilnehmer[0].loescheTeilnehmer();
+							teilnehmer[0].loeschePunkte();
+							fk.anzahl_fragen = 0;
+
 							status_html++;
+							//result = true;
+						}
+						else
+						{
+							Serial.print("File open error: ");
+							Serial.println(fileName);
+						}
 						teilnehmer[0].loescheTeilnehmer();
-
 					}
-
-					//if (schreibeDateiListe(client, 0) == true)
-					//{
-					//	Serial.println("ListFiles true");
-					//	int anzahl_zeilen = 0;
-					//	
-					//	if (fk.Oeffne_Datei(fileName))
-					//		status_html++;
-					//}
 				}
 					
 				if (status_html == Teilnehmersuche)
@@ -299,9 +274,9 @@ void loop() {
 					}
 					byte taste = teilnehmer[0].leseFunktionstaste();
 
-					if (taste > 1)
+					if (taste >= 1)
 					{
-						status_html++;
+						frage_nr = -1;
 						previousMillis = millis();
 						teilnehmer[0].loescheTasten();
 						teilnehmer[0].loeschePunkte();
@@ -310,6 +285,7 @@ void loop() {
 							teilnehmer[t - 1].Teilnehmer_Nr = t;
 							teilnehmer[t - 1].setzteStatus(t);
 						}
+						status_html++;
 					}
 				}
 				if (status_html == Quiz)
@@ -317,9 +293,13 @@ void loop() {
 					if (frage_nr != -1)
 					{
 						unsigned long currentMillis = millis();
-
-						interval = fk.naechsteFrage.zeit * 1000;
+						//Serial.print("zeit:"); Serial.println(fk.naechsteFrage.zeit);
+						interval = (unsigned long)fk.naechsteFrage.zeit * 1000;
 						restzeit = (interval - (currentMillis - previousMillis))/1000;
+						//Serial.print("interval"); Serial.println(interval);
+						//Serial.print("previousMillis"); Serial.println(previousMillis);
+						//Serial.print("currentMillis"); Serial.println(currentMillis);
+						//Serial.print("restzeit"); Serial.println(restzeit);
 						if (restzeit < 0)
 							restzeit = 0;
 						fehlendeTastenTeilnehmer = teilnehmer[0].alleTeilnehmerGedrueckt();
@@ -346,6 +326,7 @@ void loop() {
 							Serial.println("schreibe Frage");
 							if (ZeitUm || alleTeilnehmerGedrueckt)
 							{
+								teilnehmer[0].loescheFNTaste();
 								status_html = Antwort;
 							}
 							else
@@ -366,23 +347,31 @@ void loop() {
 					else
 					{
 						Serial.print("Lese_Frage");
-						int tmp = fk.Lese_Frage();
+						int tmp = -1;
+						while (tmp == -1)
+						{
+							html_str[0] = 0;
+							tmp = LeseZeile(html_str);
+							if (tmp > 0)
+								tmp = fk.Lese_Frage(html_str);
+							else
+								break;
 
-						digitalWrite(SDCARD_CS, HIGH);	// SPI SD Karte ausschalten (Ethernet ein)
-						digitalWrite(W5200_CS, LOW);
+						}
 
 						Serial.println(tmp);
 						if (tmp != -1)
 						{
 							frage_nr = tmp;
 							Serial.println("");
-							Serial.print("Lese_Frage erfolgreich");
+							Serial.print("Lese_Frage erfolgreich:");
 							Serial.print(frage_nr);
 						}
 						if (tmp == -1 || fk.anzahl_fragen >= maxAnzahlFragen)
 						{
 							status_html = Auswertung;
-							fk.Schliesse_Datei();
+							if (quizFile.isOpen())
+								quizFile.close();
 						}
 					}
 				}
@@ -410,7 +399,7 @@ void loop() {
 					}
 					byte taste = teilnehmer[0].leseFunktionstaste();
 
-					if (taste > 1)
+					if (taste >= 1)//> 1)
 					{
 						for (byte t = 1; t <= maxAnzahlTeilnehmer; t++)
 						{
@@ -418,8 +407,18 @@ void loop() {
 							Serial.print("Tn:"); Serial.println(t);
 							Serial.print("Punkte:"); Serial.println(teilnehmer[t - 1].punkte);
 						}
-						if (taste > 10)
+						if (taste > 2)
+						{
+							//for (byte t = 1; t <= maxAnzahlTeilnehmer; t++)
+							//{
+							//	//punkte[t - 1] = teilnehmer[t - 1].punkte;
+							//	teilnehmer[t - 1].punkte = random(300);
+							//	teilnehmer[t - 1].aktive = true;
+							//}
+							auswertungSelected = 1;
+							qsort(teilnehmer, maxAnzahlTeilnehmer, sizeof(TeilnehmerClass), myCompareFunction);
 							status_html = Auswertung;
+						}
 						else
 							status_html = Quiz;
 						previousMillis = millis();
@@ -452,23 +451,34 @@ void loop() {
 						// you've gotten a character on the current line
 						currentLineIsBlank = false;
 					}
+					
 					byte taste = teilnehmer[0].leseFunktionstaste();
-
 					if (taste > 1)
 					{
 						status_html = Ende;
 					}
+					else if (taste == 1)
+					{
+						auswertungSelected++;
+					}
+					
 				}
 				if (status_html == Ende)
 				{
+
 					teilnehmer[0].loescheTasten();
 					teilnehmer[0].loescheTeilnehmer();
+					teilnehmer[0].loeschePunkte();
+
 					for (byte t = 1; t <= maxAnzahlTeilnehmer; t++)
 					{
-						teilnehmer[t - 1].auswertungPunkte(fk);
+						//teilnehmer[t - 1].auswertungPunkte(fk);
+						teilnehmer[t - 1].punkte = 0;
 					}
+				
 
 					status_html = Dateiwahl;
+					frage_nr = -1;
 				}
 			}
 		}
@@ -485,16 +495,27 @@ bool schreibeAnzahlTeilnehmer(EthernetClient client)
 	schreibeHeader(client);
 	client.print("<h3>Ermittle Anzahl der Teilnehmer:</h3>");
 	client.print("<h1>Bitte alle die Taste Nr: 1 druecken</h1>");
-	String tn = "<h2>";
-	tn += teilnehmer[0].ermittleListeTeilnehmer(1);
-	tn += "</h2>";
-	client.print(tn);
-	client.print("<br />");
+
+	html_str[0] = 0;
+	strcat(html_str, "<h2>");	// String tn = "<h2>";
+	teilnehmer[0].ermittleListeTeilnehmer(html_str);
+	strcat(html_str, "</h2>");	//tn += "</h2>";
+	client.print(html_str);
+	Serial.println(html_str);
+
+	html_str[0] = 0;
+	strcat(html_str, "<h2>");	// String tn = "<h2>";
+	teilnehmer[0].ermittleTasteTeilnehmer(html_str);
+	strcat(html_str, "</h2>");	//tn += "</h2>";
+	client.print(html_str);
+	Serial.println(html_str);
+
+	//client.print("<br />");
 	anzahl_Teilnehmer = teilnehmer[0].ermittleAnzahlTeilnehmer();
 	client.print("<h2>");
 	client.print("Anzahl Teilnehmer: ");  client.println(anzahl_Teilnehmer);
 	client.print("</h2>");
-	client.print("<br />");
+	client.print("<br />Weiter mit Taste!");
 }
 
 void schreibeFrage(EthernetClient client)
@@ -503,13 +524,17 @@ void schreibeFrage(EthernetClient client)
 	schreibeHeader(client);
 	client.print("QuizDatei: ");  client.println(fileName);
 	client.print("<br />");
-	//Serial.print("anzahl_fragen");  Serial.println(fk.anzahl_fragen);
+	
+	html_str[0] = 0;
+	fk.naechsteFrage.get_html_frage(html_str);
 
-	client.print(fk.naechsteFrage.get_html_frage());
-	//int antw = fk.naechsteFrage.richtige_antwort;
-	String s = fk.naechsteFrage.get_html_antworten(0);
-	//Serial.println(s);
-	client.print(s);
+	Serial.print(html_str);
+	client.print(html_str);
+
+	html_str[0] = 0;
+	fk.naechsteFrage.get_html_antworten(0, html_str);
+	
+	client.print(html_str);
 
 	client.print("<br />");
 	client.print("<br />");
@@ -519,9 +544,45 @@ void schreibeFrage(EthernetClient client)
 	client.print("Teilnehmer ohne Antwort: ");  client.println(fehlendeTastenTeilnehmer);
 	client.print("<br />");
 	client.print("</h2>");
+	html_str[0] = 0;
+	teilnehmer[0].ermittleListeTeilnehmerGedrueckt(html_str);
+	client.print("Teilnehmer hat geantwortet: ");  client.println(html_str);
+}
+
+int LeseZeile(char *line)
+{
+	memset(line, 0, maxZeichenJeZeile);
+	char c = 0;
+	int cnt = 0;
 	
-	String t = teilnehmer[0].ermittleListeTeilnehmerGedrueckt();
-	client.print("Teilnehmer hat geantwortet: ");  client.println(t);
+	//quizFile.rewind();
+
+	do
+	{
+		c = quizFile.read();
+		if (c != EOF)
+		{
+			Serial.print(c);
+			line[cnt] = c;
+			cnt++;
+			if (cnt >= maxZeichenJeZeile)
+			{
+				Serial.println("Zeile zu lange:");
+				do
+				{
+					c = quizFile.read();
+					Serial.print(c);
+				} while (c != EOF && c != '\n');
+			}
+		}
+	} while (c != EOF && c != '\n');
+	Serial.print("Zeile:");
+	Serial.println(line);
+	if (cnt == 0)
+		return -1;
+	else
+		return cnt;
+
 }
 
 void schreibeFrageMitAntwort(EthernetClient client)
@@ -529,13 +590,20 @@ void schreibeFrageMitAntwort(EthernetClient client)
 	schreibeHeader(client);
 	client.print("QuizDatei: ");  client.println(fileName);
 	client.print("<br />");
-	//Serial.print("anzahl_fragen");  Serial.println(fk.anzahl_fragen);
-
-	client.print(fk.naechsteFrage.get_html_frage());
 	int antw = fk.naechsteFrage.richtige_antwort;
-	String s = fk.naechsteFrage.get_html_antworten(antw);
-	Serial.println(s);
-	client.print(s);
+
+	memset(html_str, 0, 4 * maxZeichenJeZeile);
+	fk.naechsteFrage.get_html_frage(html_str);	// client.print(fk.naechsteFrage.get_html_frage());
+	client.print(html_str);
+
+	fk.naechsteFrage.get_html_antworten(antw, html_str);	// fk.naechsteFrage.get_html_antworten(antw);
+
+	client.print(html_str);
+	Serial.println(html_str);
+
+	
+	client.print("<br />Weiter mit Taste! ");
+	client.print("<br />Abbruch Quiz, zur Auswertung - Taste min. 5Sekunden druecken ");
 }
 
 void schreibeAuswertung(EthernetClient client)
@@ -545,29 +613,64 @@ void schreibeAuswertung(EthernetClient client)
 	client.print("<br />");
 
 	client.print("<h3>Auswertung:</h3>");
-	//client.print("<h1>Bitte alle die Taste Nr: 1 drücken</h1>");
 	String tn = "<h2>";
-	//tn += teilnehmer[0].ermittleAnzahlTeilnehmer(1);
-	for (byte t = 1; t <= maxAnzahlTeilnehmer; t++)
+	byte tmp[10];
+
+	//int punkte[maxAnzahlTeilnehmer] = {};
+	
+	
+
+	byte tNr = 1;
+	byte t = 0;
+
+	if (auswertungSelected > maxAnzahlTeilnehmer)
+		auswertungSelected = maxAnzahlTeilnehmer;
+
+	//Serial.println("");
+	//Serial.print("auswertungSelected:");
+	//Serial.print(auswertungSelected);
+	//Serial.print(" t:");
+	//Serial.print(t);
+
+	while (tNr < auswertungSelected)
 	{
-		if (teilnehmer[t - 1].aktive)
+		if (teilnehmer[t].aktive)
 		{
 			tn += "Teilnehmer:";
-			tn += t;
+			tn += teilnehmer[t].Teilnehmer_Nr; //t;
 			tn += " Punkte:";
-			tn += teilnehmer[t - 1].punkte;
+			tn += teilnehmer[t].punkte;
 			tn += "<br />";
+			tNr++;
 		}
+		if (t < maxAnzahlTeilnehmer)
+			t++;
+		else
+			break;
+
 	}
+
+	//for (byte t = 1; t <= maxAnzahlTeilnehmer; t++)
+	//{
+	//	if (teilnehmer[t - 1].aktive)
+	//	{
+	//		tn += "Teilnehmer:";
+	//		tn += teilnehmer[t - 1].Teilnehmer_Nr; //t;
+	//		tn += " Punkte:";
+	//		tn += teilnehmer[t - 1].punkte;
+	//		tn += "<br />";
+	//	}
+	//}
 	tn += "<br />";
 	tn += "max: ";
 	tn += " Punkte:";
 	tn += teilnehmer[0].SummePunkte();
 	tn += "<br />";
-
 	tn += "</h2>";
-	
 	client.print(tn);
+
+	client.print("<br />Teilnehmer auflisten mit Taste!");
+	client.print("<br />Neustart mit Taste! (min. 2Sekunden druecken) ");
 }
 
 
@@ -631,8 +734,9 @@ bool schreibeDateiListe(EthernetClient client, uint8_t flags)
 			y++;
 		}
 		FileName[y] = '\0';
-		Serial.println(FileName);
-		fileList[file_nr] = FileName;
+		//Serial.println(FileName);
+		strcpy(fileList[file_nr], FileName); //fileList[file_nr] = FileName; 
+		Serial.println(fileList[file_nr]);
 		file_nr++;
 	}
 
@@ -653,18 +757,42 @@ bool schreibeDateiListe(EthernetClient client, uint8_t flags)
 
 	for (int i = 0; i < file_nr; i++)
 	{
-		String file = "<h2>";
+		html_str[0] = 0;
+		strcat(html_str, "<h2>");	// String file = "<h2>";
+		
 		if (i == fileNrSelected)
-			file += "<mark>";
-		file += fileList[i];
+			strcat(html_str, "<mark>");	//	file += "<mark>";
+		strcat(html_str, fileList[i]);	//file += fileList[i];
 		if (i == fileNrSelected)
-			file += "</mark>";
-		file += "</h2>";
-		client.println(file); 
+			strcat(html_str, "</mark>");	//	file += "</mark>";
+		strcat(html_str, "</h2>");	//file += "</h2>";
+		client.println(html_str);
 	}
 	Serial.print("fileNrSelected");
 	Serial.println(fileNrSelected);
-	String f = fileList[fileNrSelected];
-	fileName = "/qm/";
-	fileName += f;
+	strcpy(fileName, fileList[fileNrSelected]);
+
+	client.print("<br />Weiterscrollen: Kurzer Tastendruck");
+	client.print("<br />Auswaehlen: Langer Tastendruck  (min 2 Sekunden)");
 }
+
+// callback function for doing comparisons
+int myCompareFunction(const void * arg1, const void * arg2)
+{
+	int a = ((TeilnehmerClass*)arg1)->punkte;
+	int b = ((TeilnehmerClass*)arg2)->punkte;
+
+	//Serial.println(a);
+	//Serial.println(b);
+
+	// a less than b? 
+	if (a < b)
+		return -1;
+
+	// a greater than b?
+	if (a > b)
+		return 1;
+
+	// must be equal
+	return 0;
+}  // end of myCompareFunction
